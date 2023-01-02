@@ -15,13 +15,12 @@ const app = {
     login() {
       axios.post(`${this.url}/admin/signin`, this.user)
         .then(res=> {
-          console.log(res.data);
           const { token, expired } = res.data
           document.cookie = `hexschoolToken=${token}; expires=${new Date(expired)};`;
           window.location = './products.html'
         })
         .catch(err=> {
-          console.dir(err)
+          alert(err.response.data.message)
         })
     }
   }
